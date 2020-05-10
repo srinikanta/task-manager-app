@@ -22,3 +22,13 @@
 - Angular 9
 ### DB
 - postgresql
+
+## Screens
+- Login
+![Login](output/Login.png)
+- Task List
+![alt](output/Tasks.png)
+- Add Task
+![Add Task](output/AddTask.png)
+- Task Details
+![Task Detal](output/TaskDetails.png)
