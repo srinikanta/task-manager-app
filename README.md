@@ -1,27 +1,24 @@
 # TaskManagerApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+## Prerequisite
+- Create DB from `/db/db.sql` file
+- Change db `config` details in `task-manager-server/config/default.json`
+- Run `npm install` from `root` folder of application
+- `npm run bootstrap` to `hoist` all project dependencies
 
-## Development server
+## Start
+- `npm run start:server` to start the `server`
+- `npm run start:client` to start the `client`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Test
+- `npm run test:server-cov-html` to run the test coverage of `server`. 
+- `coverage.html` file will be generated in `task-manager-server` root folder
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Technology Stack
+### Server(Nodejs)
+- hapi
+- sequelize (ORM)
+### Client
+- Angular 9
+### DB
+- postgresql

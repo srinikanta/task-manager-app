@@ -1,0 +1,15 @@
+<div class="container jumbotron bg-transparent text-center">
+  <div *ngIf="!user" class="card text-center">
+    <h6 class="card-header">
+      Task Manager Login
+    </h6>
+    <div class="card-block">
+      <h4 class="card-title">Not signed in</h4>
+    </div>
+    <div class="card-block">
+      <button class="loginBtn loginBtn--google" (click)="signInWithGoogle()">
+        Login with Google
+      </button>     
+    </div>
+  </div>
+</div>

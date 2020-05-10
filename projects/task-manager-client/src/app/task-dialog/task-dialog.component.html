@@ -1,0 +1,56 @@
+<ng-template #modalContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> {{ getDialogTitle() }} </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group row">
+        <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="data.task.title" name="title" class="form-control" id="inputTitle">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputDesc" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" [(ngModel)]="data.task.description" name="desc" id="inputDesc" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="selcAssignee" class="col-sm-2 col-form-label">Due Date</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="data.task.dueDate" ngbDatepicker #dp="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--
+      <div class="form-group row" *ngIf="operation === 'edit'">
+        <label for="selcStatus" class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-10">
+          <select [(ngModel)]="data.task.currentStatus" class="form-control" name="selcStatus" id="selcStatus">
+            <option
+              *ngFor="let statusType of data.statusTypes"
+              [value]="statusType.value"
+            >
+              {{statusType.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      -->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+      {{ operation === 'edit' ? 'Update' : 'Add'}}
+    </button>
+  </div>
+</ng-template>
