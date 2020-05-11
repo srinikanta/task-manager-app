@@ -10,6 +10,9 @@
 - `npm run start:server` to start the `server`
 - `npm run start:client` to start the `client`
 
+## Code Beautification
+- `npm run prettier:client:ts` for `client` beautification
+- `prettier:server:js` for `server` beautification
 ## Test
 - `npm run test:server-cov-html` to run the test coverage of `server`. 
 - `coverage.html` file will be generated in `task-manager-server` root folder
@@ -22,6 +25,7 @@
 - Angular 9
 ### DB
 - postgresql
+
 
 ## Screens
 - Login
