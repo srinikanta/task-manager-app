@@ -18,28 +18,29 @@ export class TaskListComponent implements OnInit, OnDestroy {
   public tasks: ITask[];
   storeSub: Subscription;
   public operation = 'new';
-  private userInfo:IUserInfo;
-
+  private userInfo: IUserInfo;
 
   constructor(
     private taskService: TaskService,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.userInfo = this.userService.getUserInfo();
-    if(!this.userInfo) {
+    if (!this.userInfo) {
       this.router.navigate(['/login']);
     } else {
-      this.storeSub = this.taskService.getTasksByUser(this.userInfo.userId).subscribe(tasks => this.tasks = tasks);
-      this.storeSub = this.taskService.stateChanged.subscribe(state => {
+      this.storeSub = this.taskService
+        .getTasksByUser(this.userInfo.userId)
+        .subscribe((tasks) => (this.tasks = tasks));
+      this.storeSub = this.taskService.stateChanged.subscribe((state) => {
         if (state) {
           console.log(state);
           this.tasks = state.tasks;
         }
       });
     }
-        
   }
 
   ngOnDestroy() {
@@ -61,9 +62,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   deleteTask(taskId: number) {
-    this.taskService.removeTask(taskId, this.userInfo.userId).subscribe((removedTask) => {
-      console.log(removedTask)
-    });
+    this.taskService
+      .removeTask(taskId, this.userInfo.userId)
+      .subscribe((removedTask) => {
+        console.log(removedTask);
+      });
   }
 
   closeTaskDialog(result: ICloseDialogConfig) {

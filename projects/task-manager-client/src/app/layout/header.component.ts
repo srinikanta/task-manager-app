@@ -1,7 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ITask } from '../core/model/task';
-import { IDialogDataConfig, ICloseDialogConfig } from '../task-dialog/task-dialog.component';
+import {
+  IDialogDataConfig,
+  ICloseDialogConfig
+} from '../task-dialog/task-dialog.component';
 import { IStatusType } from '../core/model/status-type';
 import { TaskService } from '../services/task.service';
 import { IUserInfo } from '../core/model/user-info';
@@ -29,10 +32,9 @@ export class HeaderComponent implements OnInit {
     private taskService: TaskService,
     private router: Router,
     private route: ActivatedRoute,
-    public toastService: ToastService,
-    // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
-    //private authService: AuthService
-    ) {}
+    public toastService: ToastService // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
+  ) //private authService: AuthService
+  {}
 
   hadnleSignOut(): void {
     //this.authService.signOut();
@@ -50,12 +52,12 @@ export class HeaderComponent implements OnInit {
     this.dialogData = {
       task: {} as ITask,
       statusTypes: []
-    }
+    };
   }
 
   closeTaskDialog(result: ICloseDialogConfig) {
     this.isVisible = false;
-    if(this.operation === 'new') {
+    if (this.operation === 'new') {
       let taskPayload = {
         ...result.data.task,
         creationDate: Utils.getCurrentDate(),
@@ -66,19 +68,25 @@ export class HeaderComponent implements OnInit {
       };
       console.log(taskPayload, this.userInfo);
       Object.assign(taskPayload, this.userInfo);
-      this.taskService.addTask(taskPayload, this.userInfo.userId).subscribe((newTask) => {
-        this.showSuccess('Success fully added');
-      });
+      this.taskService
+        .addTask(taskPayload, this.userInfo.userId)
+        .subscribe((newTask) => {
+          this.showSuccess('Success fully added');
+        });
     }
-    this.operation = '';    
+    this.operation = '';
   }
 
   showSuccess(messages) {
-    this.toastService.show(messages, { classname: 'bg-success text-light', delay: 10000 });
+    this.toastService.show(messages, {
+      classname: 'bg-success text-light',
+      delay: 10000
+    });
   }
 
   getDueDate(date) {
-    return date ?  date.year + this.DELIMITER + date.month + this.DELIMITER + date.day: '';
+    return date
+      ? date.year + this.DELIMITER + date.month + this.DELIMITER + date.day
+      : '';
   }
-
 }

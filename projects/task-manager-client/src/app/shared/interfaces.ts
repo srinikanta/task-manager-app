@@ -9,5 +9,5 @@ export interface IStoreState {
   subTasks: ISubTask[];
   comments: IComment[];
   statusTypes: IStatusType[];
-  userInfo: IUserInfo
+  userInfo: IUserInfo;
 }

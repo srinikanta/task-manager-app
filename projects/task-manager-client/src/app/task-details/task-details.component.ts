@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TaskService } from '../services/task.service';
-import { ICloseDialogConfig, IDialogDataConfig } from '../task-dialog/task-dialog.component';
+import {
+  ICloseDialogConfig,
+  IDialogDataConfig
+} from '../task-dialog/task-dialog.component';
 import { IStatusType } from '../core/model/status-type';
 import { ITask, ISubTask } from '../core/model/task';
 import { IComment } from '../core/model/comment';
@@ -15,7 +18,6 @@ import { Utils } from '../shared/utils';
   styleUrls: ['./task-details.component.scss']
 })
 export class TaskDetailsComponent implements OnInit {
-
   public dialogData: IDialogDataConfig;
   public statusTypes: IStatusType[];
   public task: ITask;
@@ -32,21 +34,25 @@ export class TaskDetailsComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    public toastService: ToastService) { }
-
+    public toastService: ToastService
+  ) {}
 
   ngOnInit() {
     this.count = 0;
     const id = +this.route.snapshot.paramMap.get('id');
-    this.taskService.getStatusTypes().subscribe(statusTypes => this.statusTypes = statusTypes);
-    this.taskService.getSubTasks(id).subscribe(subTasks => {
+    this.taskService
+      .getStatusTypes()
+      .subscribe((statusTypes) => (this.statusTypes = statusTypes));
+    this.taskService.getSubTasks(id).subscribe((subTasks) => {
       this.subTasks = subTasks.map((subTask) => {
         subTask.isCompleted = false;
         return subTask;
       });
     });
-    this.taskService.getComments(id).subscribe(comments => this.comments = comments);
-    this.taskService.getTask(id).subscribe(task => {
+    this.taskService
+      .getComments(id)
+      .subscribe((comments) => (this.comments = comments));
+    this.taskService.getTask(id).subscribe((task) => {
       this.handleTask(task);
     });
   }
@@ -59,11 +65,17 @@ export class TaskDetailsComponent implements OnInit {
 
   getNgbDateFormat(dueDate) {
     const dateArray = dueDate.split('-');
-    return { year: parseInt(dateArray[0]), month: parseInt(dateArray[1]), day: parseInt(dateArray[2]) };
+    return {
+      year: parseInt(dateArray[0]),
+      month: parseInt(dateArray[1]),
+      day: parseInt(dateArray[2])
+    };
   }
 
   getDateFormat(date) {
-    return date ? date.year + this.DELIMITER + date.month + this.DELIMITER + date.day : '';
+    return date
+      ? date.year + this.DELIMITER + date.month + this.DELIMITER + date.day
+      : '';
   }
 
   handleUpdateTask() {
@@ -73,18 +85,23 @@ export class TaskDetailsComponent implements OnInit {
       taskId: this.task.taskId,
       title: this.task.title,
       description: this.task.description,
-      status: this.task.status,      
+      status: this.task.status,
       dueDate: this.getDateFormat(this.task.dueDate)
-    }
+    };
 
-    this.taskService.updateTask(updateTaskPayload, this.task.taskId, userInfo.userId).subscribe((tasks) => {
-      console.log('updateTask', tasks);
-      this.showSuccess('Success fully updated');
-    });
+    this.taskService
+      .updateTask(updateTaskPayload, this.task.taskId, userInfo.userId)
+      .subscribe((tasks) => {
+        console.log('updateTask', tasks);
+        this.showSuccess('Success fully updated');
+      });
   }
 
   showSuccess(messages) {
-    this.toastService.show(messages, { classname: 'bg-success text-light', delay: 10000 });
+    this.toastService.show(messages, {
+      classname: 'bg-success text-light',
+      delay: 10000
+    });
   }
 
   openTaskDialog(isOpen: boolean) {
@@ -93,7 +110,7 @@ export class TaskDetailsComponent implements OnInit {
     this.dialogData = {
       task: {} as ITask,
       statusTypes: this.statusTypes
-    }
+    };
   }
 
   handleSubtask() {
@@ -102,7 +119,7 @@ export class TaskDetailsComponent implements OnInit {
     this.dialogData = {
       task: {} as ITask,
       statusTypes: this.statusTypes
-    }
+    };
   }
 
   closeTaskDialog(result: ICloseDialogConfig) {
@@ -114,11 +131,13 @@ export class TaskDetailsComponent implements OnInit {
         ...result.data.task,
         dueDate: this.getDateFormat(result.data.task.dueDate),
         isCompleted: false
-      }
+      };
 
-      this.taskService.addSubTask(subTaskPayload, this.task.taskId).subscribe((subTasks) => {
-        this.subTasks = subTasks;
-      });
+      this.taskService
+        .addSubTask(subTaskPayload, this.task.taskId)
+        .subscribe((subTasks) => {
+          this.subTasks = subTasks;
+        });
     }
     this.operation = '';
   }
@@ -131,12 +150,13 @@ export class TaskDetailsComponent implements OnInit {
     const commentPayload = {
       ...$event,
       taskId: this.task.taskId
-    }
-    this.taskService.addComment(commentPayload, this.task.taskId).subscribe((comments) => {
-      this.comments = comments;
-    });
+    };
+    this.taskService
+      .addComment(commentPayload, this.task.taskId)
+      .subscribe((comments) => {
+        this.comments = comments;
+      });
   }
-
 
   deleteComment($event) {
     // TODO: Need to access service call to delete comments
@@ -144,7 +164,6 @@ export class TaskDetailsComponent implements OnInit {
     this.comments = $event;
   }
 
-  
   handleSubtaskStatus(event, subTaskIndex) {
     // TODO: Need to access service call to update completed status
     this.subTasks[subTaskIndex].isCompleted = event.target.checked;

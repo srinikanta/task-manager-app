@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { ToastService } from '../services/toast.service';
 
-@Component({ selector: 'ngbd-toast-global', templateUrl: './toast-global.component.html' })
+@Component({
+  selector: 'ngbd-toast-global',
+  templateUrl: './toast-global.component.html'
+})
 export class NgbdToastGlobal {
   constructor(public toastService: ToastService) {}
 
@@ -10,10 +13,16 @@ export class NgbdToastGlobal {
   }
 
   showSuccess() {
-    this.toastService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000 });
+    this.toastService.show('I am a success toast', {
+      classname: 'bg-success text-light',
+      delay: 10000
+    });
   }
 
   showDanger(dangerTpl) {
-    this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 15000 });
+    this.toastService.show(dangerTpl, {
+      classname: 'bg-danger text-light',
+      delay: 15000
+    });
   }
 }

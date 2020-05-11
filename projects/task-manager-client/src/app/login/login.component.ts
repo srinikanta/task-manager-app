@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import {
+  AuthService,
+  GoogleLoginProvider,
+  SocialUser
+} from 'angularx-social-login';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { IUserInfo } from '../core/model/user-info';
@@ -11,7 +15,6 @@ import { Utils } from '../shared/utils';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   user: SocialUser;
   loggedIn: boolean;
 
@@ -19,7 +22,7 @@ export class LoginComponent implements OnInit {
     //private authService: AuthService,
     private router: Router,
     private userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit() {
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
@@ -31,7 +34,7 @@ export class LoginComponent implements OnInit {
     });
     */
   }
-  
+
   signInWithGoogle(): void {
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
     //this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -40,9 +43,9 @@ export class LoginComponent implements OnInit {
       userName: 'srini1',
       email: 'sri@sri.com',
       creationDate: Utils.getCurrentDate()
-    }
+    };
     this.userService.findOrCreateUser(userPayload).subscribe((newUser) => {
       this.router.navigate(['/tasks']);
-    });    
+    });
   }
 }

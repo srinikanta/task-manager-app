@@ -6,7 +6,8 @@
   "scripts": {
     "start:server": "cross-env NODE_ENV=development nodemon src/server",
     "test": "lab --leaks -t 90 v ./test/example.test.js",
-    "test-cov-html": "lab -r html -o coverage.html"
+    "test-cov-html": "lab -r html -o coverage.html",
+    "prettier:server:js": "prettier --write ./src/**/*.js"
   },
   "author": "",
   "license": "ISC",

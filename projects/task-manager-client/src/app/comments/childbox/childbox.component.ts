@@ -1,4 +1,13 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +16,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./childbox.component.css']
 })
 export class ChildboxComponent implements OnInit {
-
   childForm: FormGroup;
   replyComment: Array<object> = [];
   submitted: Boolean = false;
@@ -15,7 +23,7 @@ export class ChildboxComponent implements OnInit {
   @Output() deletNo = new EventEmitter();
   @Input() commentNo: any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.createForm();
@@ -24,7 +32,14 @@ export class ChildboxComponent implements OnInit {
 
   createForm() {
     this.childForm = this.formBuilder.group({
-      comment: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
+      comment: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100)
+        ]
+      ]
     });
   }
 
@@ -34,12 +49,11 @@ export class ChildboxComponent implements OnInit {
       return false;
     } else {
       this.replyComment.push({
-        currentDate : new Date(),
+        currentDate: new Date(),
         commentTxt: this.childForm.controls['comment'].value
       });
       this.userReplycomment.emit(this.replyComment);
       this.deletNo.emit(this.commentNo);
     }
   }
-
 }

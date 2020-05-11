@@ -8,14 +8,13 @@ import { Utils } from '../../shared/utils';
   styleUrls: ['./commentbox.component.css']
 })
 export class CommentboxComponent implements OnInit {
-
   commentForm: FormGroup;
   commentInfo: Array<object> = [];
   submitted: Boolean = false;
   public id = 0;
   @Output() usercomment = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.createForm();
@@ -23,7 +22,14 @@ export class CommentboxComponent implements OnInit {
 
   createForm() {
     this.commentForm = this.formBuilder.group({
-      comment: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
+      comment: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100)
+        ]
+      ]
     });
   }
 
@@ -34,17 +40,16 @@ export class CommentboxComponent implements OnInit {
       return false;
     } else {
       this.commentInfo.push({
-        commentId : this.id++,
-        commentDate : Utils.getCurrentDate(),
+        commentId: this.id++,
+        commentDate: Utils.getCurrentDate(),
         commentTxt: this.commentForm.controls['comment'].value,
         replyComment: []
       });
-      
+
       this.usercomment.emit({
-        commentDate : Utils.getCurrentDate(),
+        commentDate: Utils.getCurrentDate(),
         commentTxt: this.commentForm.controls['comment'].value
       });
     }
   }
-
 }

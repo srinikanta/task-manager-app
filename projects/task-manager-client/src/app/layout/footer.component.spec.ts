@@ -5,12 +5,8 @@ import { FooterComponent } from './footer.component';
 describe('FooterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        FooterComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [FooterComponent]
     }).compileComponents();
   }));
 
@@ -25,6 +21,8 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     console.log(compiled.querySelector('.container'));
-    expect(compiled.querySelector('.container span').textContent).toContain('2020');
+    expect(compiled.querySelector('.container span').textContent).toContain(
+      '2020'
+    );
   });
 });

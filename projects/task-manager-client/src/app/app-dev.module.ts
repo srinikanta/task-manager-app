@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientInMemoryWebApiModule, InMemoryDbService, InMemoryBackendConfigArgs} from 'angular-in-memory-web-api';
+import {
+  HttpClientInMemoryWebApiModule,
+  InMemoryDbService,
+  InMemoryBackendConfigArgs
+} from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 
 @NgModule({
@@ -17,7 +21,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
       put204: false
     })
   ],
-  providers: [ { provide: InMemoryDataService, useExisting: InMemoryDbService } ],
-  bootstrap: [ AppComponent ]
+  providers: [{ provide: InMemoryDataService, useExisting: InMemoryDbService }],
+  bootstrap: [AppComponent]
 })
 export class AppDevModule {}

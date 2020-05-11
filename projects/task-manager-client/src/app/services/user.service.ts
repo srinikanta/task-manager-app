@@ -3,15 +3,15 @@ import { ObservableStore } from '@codewithdan/observable-store';
 import { of, Observable } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { IStoreState } from '../shared/interfaces'
-import { HttpHeaders } from '@angular/common/http'
+import { IStoreState } from '../shared/interfaces';
+import { HttpHeaders } from '@angular/common/http';
 import { IUserInfo } from '../core/model/user-info';
 
 const httpHeaders = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
-}
+};
 
 export enum UserStoreActions {
   ADDUSER = 'ADD_USER',
@@ -26,9 +26,10 @@ export class UserService extends ObservableStore<IStoreState> {
   }
 
   private fetchUser(userName) {
-    return this.http.get<IUserInfo>(`http://localhost:3000/getUser/${userName}`)
+    return this.http
+      .get<IUserInfo>(`http://localhost:3000/getUser/${userName}`)
       .pipe(
-        map(userInfo => {
+        map((userInfo) => {
           this.setState({ userInfo }, UserStoreActions.GETUSER);
           return userInfo;
         }),
@@ -37,9 +38,10 @@ export class UserService extends ObservableStore<IStoreState> {
   }
 
   addUser(user: IUserInfo) {
-    return this.http.post<IUserInfo>('http://localhost:3000/addUser', user, httpHeaders)
+    return this.http
+      .post<IUserInfo>('http://localhost:3000/addUser', user, httpHeaders)
       .pipe(
-        switchMap(user => {
+        switchMap((user) => {
           console.log(user);
           return this.fetchUser(user.userName);
         }),
@@ -52,9 +54,10 @@ export class UserService extends ObservableStore<IStoreState> {
   }
 
   findOrCreateUser(user: IUserInfo) {
-    return this.http.post<IUserInfo>('http://localhost:3000/addUser', user, httpHeaders)
+    return this.http
+      .post<IUserInfo>('http://localhost:3000/addUser', user, httpHeaders)
       .pipe(
-        map(response => {
+        map((response) => {
           console.log(response);
           const userInfo = response[0];
           this.setState({ userInfo }, UserStoreActions.GETUSER);
@@ -65,13 +68,12 @@ export class UserService extends ObservableStore<IStoreState> {
   }
 
   private fetchUsers() {
-    return this.http.get<IUserInfo>(`http://localhost:3000/getUsers`)
-      .pipe(
-        map(users => {
-          return users;
-        }),
-        catchError(this.handleError)
-      );
+    return this.http.get<IUserInfo>(`http://localhost:3000/getUsers`).pipe(
+      map((users) => {
+        return users;
+      }),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: any) {

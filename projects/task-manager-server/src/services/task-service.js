@@ -1,11 +1,10 @@
-const db = require("../helpers/database-helper");
+const db = require('../helpers/database-helper');
 const StatusTypesModel = require('../models/status-types.model');
 const TasksModel = require('../models/tasks.model');
 const SubTasksModel = require('../models/subtask.model');
-const config = require("config");
+const config = require('config');
 
 class TaskService {
-
   async getTasksByUserId(userId) {
     const result = [];
 
@@ -14,11 +13,19 @@ class TaskService {
         where: {
           userId: userId
         },
-        attributes: ['taskId', 'title', 'description', 'status', 'creationDate', 'dueDate', 'updatedOn']
+        attributes: [
+          'taskId',
+          'title',
+          'description',
+          'status',
+          'creationDate',
+          'dueDate',
+          'updatedOn'
+        ]
       });
 
       for (let index = 0; index < queryResponse.length; index++) {
-        result.push(queryResponse[index].dataValues)
+        result.push(queryResponse[index].dataValues);
       }
 
       return result;
@@ -33,11 +40,19 @@ class TaskService {
 
     try {
       const queryResponse = await TasksModel.findAll({
-        attributes: ['taskId', 'title', 'description', 'status', 'creationDate', 'dueDate', 'updatedOn']
+        attributes: [
+          'taskId',
+          'title',
+          'description',
+          'status',
+          'creationDate',
+          'dueDate',
+          'updatedOn'
+        ]
       });
 
       for (let index = 0; index < queryResponse.length; index++) {
-        result.push(queryResponse[index].dataValues)
+        result.push(queryResponse[index].dataValues);
       }
 
       return result;
@@ -55,11 +70,18 @@ class TaskService {
         where: {
           taskId: taskId
         },
-        attributes: ['subTaskId', 'taskId', 'title', 'description', 'creationDate', 'updatedOn']
+        attributes: [
+          'subTaskId',
+          'taskId',
+          'title',
+          'description',
+          'creationDate',
+          'updatedOn'
+        ]
       });
 
       for (let index = 0; index < queryResponse.length; index++) {
-        result.push(queryResponse[index].dataValues)
+        result.push(queryResponse[index].dataValues);
       }
 
       return result;
@@ -75,7 +97,7 @@ class TaskService {
     });
     const result = [];
     for (let index = 0; index < queryResponse.length; index++) {
-      result.push(queryResponse[index].dataValues)
+      result.push(queryResponse[index].dataValues);
     }
     return result;
   }
@@ -88,7 +110,10 @@ class TaskService {
       //await db.connection.query(`SELECT nextval('task_seq')`, values);
       //TasksModel.create({})
 
-      const nextTaskId = await db.connection.query(`SELECT nextval('task_seq')`, { type: db.connection.QueryTypes.SELECT })
+      const nextTaskId = await db.connection.query(
+        `SELECT nextval('task_seq')`,
+        { type: db.connection.QueryTypes.SELECT }
+      );
       console.log(nextTaskId[0].nextval);
       const newTaskId = nextTaskId[0].nextval;
       const created = await TasksModel.create({
@@ -111,7 +136,10 @@ class TaskService {
 
   async addSubTask(subTask) {
     try {
-      const nextTaskId = await db.connection.query(`SELECT nextval('subtask_seq')`, { type: db.connection.QueryTypes.SELECT })
+      const nextTaskId = await db.connection.query(
+        `SELECT nextval('subtask_seq')`,
+        { type: db.connection.QueryTypes.SELECT }
+      );
       console.log(nextTaskId[0].nextval);
       const newSubTaskId = nextTaskId[0].nextval;
       const created = await SubTasksModel.create({
@@ -126,33 +154,35 @@ class TaskService {
     } catch (err) {
       console.log(err);
       return false;
-    }    
+    }
   }
 
   async updatedTask(task) {
     try {
-
-      const queryResponse = await TasksModel.update({
-        description: task.description,
-        status: task.status,
-        dueDate: task.dueDate
-      }, {
-        where: {
-          taskId: parseInt(task.taskId)
+      const queryResponse = await TasksModel.update(
+        {
+          description: task.description,
+          status: task.status,
+          dueDate: task.dueDate
+        },
+        {
+          where: {
+            taskId: parseInt(task.taskId)
+          }
         }
-      });
+      );
       console.log(queryResponse);
       return true;
     } catch (err) {
       console.log(err);
       return false;
-    }    
+    }
   }
 
   async removeTask(taskId) {
     const removedTask = await TasksModel.destroy({
       where: {
-       taskId: taskId
+        taskId: taskId
       }
     });
     return removedTask;

@@ -11,7 +11,7 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 import { TaskService } from './services/task.service';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
 
 import { CommentboxComponent } from './comments/commentbox/commentbox.component';
 import { CommentsComponent } from './comments/comments/comments.component';
@@ -19,14 +19,15 @@ import { ChildboxComponent } from './comments/childbox/childbox.component';
 import { DatacontainerDirective } from './comments/comments/comments.component';
 
 import { LoginComponent } from './login/login.component';
-import {
-  FooterComponent,
-  HeaderComponent
-} from './layout';
+import { FooterComponent, HeaderComponent } from './layout';
 import { PageHeaderComponent } from './page-header/page-header.component';
 
 import { DatePipe } from '@angular/common';
-import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule  } from 'angularx-social-login';
+import {
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  SocialLoginModule
+} from 'angularx-social-login';
 import { ToastService } from './services/toast.service';
 import { ToastsContainer } from './toast/toasts-container.component';
 import { UserService } from './services/user.service';
@@ -45,8 +46,6 @@ export function provideConfig() {
 }
 */
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +60,7 @@ export function provideConfig() {
     FooterComponent,
     HeaderComponent,
     PageHeaderComponent,
-    ToastsContainer   
+    ToastsContainer
   ],
   imports: [
     BrowserModule,
@@ -70,7 +69,7 @@ export function provideConfig() {
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommonModule,
+    CommonModule
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
     //SocialLoginModule
   ],
@@ -88,4 +87,4 @@ export function provideConfig() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

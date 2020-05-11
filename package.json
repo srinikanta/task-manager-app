@@ -13,7 +13,9 @@
     "start:server": "lerna run start:server --stream",
     "build:library": "ng build task-managaer-library",
     "test:server": "lerna run test:server --stream",
-    "test:server-cov-html": "lerna run test-cov-html --stream" 
+    "test:server-cov-html": "lerna run test-cov-html --stream",
+    "prettier:client:ts": "prettier --write ./projects/task-manager-client/src/**/*.ts",
+    "prettier:server:js": "lerna run prettier:server:js --stream"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +59,7 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "lerna": "3.20.2",
     "ng-packagr": "^9.0.0",
+    "prettier": "2.0.5",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",

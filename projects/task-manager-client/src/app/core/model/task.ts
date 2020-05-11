@@ -9,7 +9,7 @@ export interface IBaseTask {
   dueDate: NgbDateStruct | string;
 }
 
-export interface ITask extends IBaseTask {  
+export interface ITask extends IBaseTask {
   taskId?: number;
   userId?: string | number;
 }
@@ -18,5 +18,3 @@ export interface ISubTask extends IBaseTask {
   subTaskId?: number;
   isCompleted?: boolean;
 }
-
-

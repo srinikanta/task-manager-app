@@ -1,4 +1,4 @@
-import {Component, TemplateRef} from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { ToastService } from '../services/toast.service';
 
 @Component({
@@ -7,8 +7,8 @@ import { ToastService } from '../services/toast.service';
     <ngb-toast
       *ngFor="let toast of toastService.toasts"
       [class]="toast.classname"
-      autohide=true
-      delay=1000
+      autohide="true"
+      delay="1000"
       (hide)="toastService.remove(toast)"
     >
       <ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
@@ -18,10 +18,12 @@ import { ToastService } from '../services/toast.service';
       <ng-template #text>{{ toast.textOrTpl }}</ng-template>
     </ngb-toast>
   `,
-  host: {'[class.ngb-toasts]': 'true'}
+  host: { '[class.ngb-toasts]': 'true' }
 })
 export class ToastsContainer {
   constructor(public toastService: ToastService) {}
 
-  isTemplate(toast) { return toast.textOrTpl instanceof TemplateRef; }
+  isTemplate(toast) {
+    return toast.textOrTpl instanceof TemplateRef;
+  }
 }
