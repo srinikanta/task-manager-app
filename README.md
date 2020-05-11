@@ -23,9 +23,12 @@
 - sequelize (ORM)
 ### Client
 - Angular 9
+- Prettier
 ### DB
 - postgresql
 
+## Performance checklist
+[Angular Performance checklist](https://github.com/mgechev/angular-performance-checklist)
 
 ## Screens
 - Login
