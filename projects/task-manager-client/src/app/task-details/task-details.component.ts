@@ -66,9 +66,9 @@ export class TaskDetailsComponent implements OnInit {
   getNgbDateFormat(dueDate) {
     const dateArray = dueDate.split('-');
     return {
-      year: parseInt(dateArray[0]),
-      month: parseInt(dateArray[1]),
-      day: parseInt(dateArray[2])
+      year: parseInt(dateArray[0], 10),
+      month: parseInt(dateArray[1], 10),
+      day: parseInt(dateArray[2], 10)
     };
   }
 

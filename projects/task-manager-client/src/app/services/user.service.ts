@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ObservableStore } from '@codewithdan/observable-store';
-import { of, Observable } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { IStoreState } from '../shared/interfaces';
@@ -37,9 +37,13 @@ export class UserService extends ObservableStore<IStoreState> {
       );
   }
 
-  addUser(user: IUserInfo) {
+  addUser(userPayload: IUserInfo) {
     return this.http
-      .post<IUserInfo>('http://localhost:3000/addUser', user, httpHeaders)
+      .post<IUserInfo>(
+        'http://localhost:3000/addUser',
+        userPayload,
+        httpHeaders
+      )
       .pipe(
         switchMap((user) => {
           console.log(user);
@@ -80,8 +84,8 @@ export class UserService extends ObservableStore<IStoreState> {
     console.error('server error:', error);
     if (error.error instanceof Error) {
       const errMessage = error.error.message;
-      return Observable.throw(errMessage);
+      return throwError(errMessage);
     }
-    return Observable.throw(error || 'Server error');
+    return throwError(error || 'Server error');
   }
 }

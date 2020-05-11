@@ -18,7 +18,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ChildboxComponent implements OnInit {
   childForm: FormGroup;
   replyComment: Array<object> = [];
-  submitted: Boolean = false;
+  submitted = false;
   @Output() userReplycomment = new EventEmitter();
   @Output() deletNo = new EventEmitter();
   @Input() commentNo: any;
@@ -50,7 +50,7 @@ export class ChildboxComponent implements OnInit {
     } else {
       this.replyComment.push({
         currentDate: new Date(),
-        commentTxt: this.childForm.controls['comment'].value
+        commentTxt: this.childForm.controls.comment.value
       });
       this.userReplycomment.emit(this.replyComment);
       this.deletNo.emit(this.commentNo);

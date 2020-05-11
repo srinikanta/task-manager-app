@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   loggedIn: boolean;
 
   constructor(
-    //private authService: AuthService,
+    // private authService: AuthService,
     private router: Router,
     private userService: UserService
   ) {}
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle(): void {
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
-    //this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    // this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
 
     const userPayload: IUserInfo = {
       userName: 'srini1',

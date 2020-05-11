@@ -67,7 +67,7 @@ export class CommentsComponent implements OnInit, OnChanges {
       const myRef = this.entry
         .toArray()
         [index].viewContainerRef.createComponent(myFactory);
-      myRef.instance['commentNo'] = index;
+      myRef.instance.commentNo = index;
       myRef.changeDetectorRef.detectChanges();
       myRef.instance.userReplycomment.subscribe((data) => {
         console.log('Piyali=>', data);
@@ -82,9 +82,9 @@ export class CommentsComponent implements OnInit, OnChanges {
   receiveReplyComment($event, i) {
     this.reply = $event;
     console.log($event);
-    this.postComment.forEach((element) => {
-      if (element['commentId'] === i) {
-        element['replyComment'].push(...$event);
+    this.postComment.forEach((element: any) => {
+      if (element.commentId === i) {
+        element.replyComment.push(...$event);
         console.log('Main array after reply comment=>', this.postComment);
       }
     });

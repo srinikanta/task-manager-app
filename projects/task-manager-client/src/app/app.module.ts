@@ -69,7 +69,7 @@ export function provideConfig() {
     ReactiveFormsModule,
     CommonModule
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
-    //SocialLoginModule
+    // SocialLoginModule
   ],
   entryComponents: [ChildboxComponent],
   providers: [
@@ -78,10 +78,10 @@ export function provideConfig() {
     ToastService,
     UserService
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
-    //{
+    // {
     //  provide: AuthServiceConfig,
     //  useFactory: provideConfig
-    //}
+    // }
   ],
   bootstrap: [AppComponent]
 })

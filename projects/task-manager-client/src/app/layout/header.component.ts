@@ -32,12 +32,12 @@ export class HeaderComponent implements OnInit {
     private taskService: TaskService,
     private router: Router,
     private route: ActivatedRoute,
-    public toastService: ToastService // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
-  ) //private authService: AuthService
-  {}
+    // private authService: AuthService
+    public toastService: ToastService // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION,
+  ) {}
 
   hadnleSignOut(): void {
-    //this.authService.signOut();
+    // this.authService.signOut();
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
     this.router.navigate(['/login']);
   }
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   closeTaskDialog(result: ICloseDialogConfig) {
     this.isVisible = false;
     if (this.operation === 'new') {
-      let taskPayload = {
+      const taskPayload = {
         ...result.data.task,
         creationDate: Utils.getCurrentDate(),
         dueDate: this.getDueDate(result.data.task.dueDate),

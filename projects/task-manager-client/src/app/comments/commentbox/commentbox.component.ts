@@ -10,7 +10,7 @@ import { Utils } from '../../shared/utils';
 export class CommentboxComponent implements OnInit {
   commentForm: FormGroup;
   commentInfo: Array<object> = [];
-  submitted: Boolean = false;
+  submitted = false;
   public id = 0;
   @Output() usercomment = new EventEmitter();
 
@@ -42,13 +42,13 @@ export class CommentboxComponent implements OnInit {
       this.commentInfo.push({
         commentId: this.id++,
         commentDate: Utils.getCurrentDate(),
-        commentTxt: this.commentForm.controls['comment'].value,
+        commentTxt: this.commentForm.controls.comment.value,
         replyComment: []
       });
 
       this.usercomment.emit({
         commentDate: Utils.getCurrentDate(),
-        commentTxt: this.commentForm.controls['comment'].value
+        commentTxt: this.commentForm.controls.comment.value
       });
     }
   }
