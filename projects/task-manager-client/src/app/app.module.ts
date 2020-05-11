@@ -20,7 +20,6 @@ import { DatacontainerDirective } from './comments/comments/comments.component';
 
 import { LoginComponent } from './login/login.component';
 import { FooterComponent, HeaderComponent } from './layout';
-import { PageHeaderComponent } from './page-header/page-header.component';
 
 import { DatePipe } from '@angular/common';
 import {
@@ -59,7 +58,6 @@ export function provideConfig() {
     LoginComponent,
     FooterComponent,
     HeaderComponent,
-    PageHeaderComponent,
     ToastsContainer
   ],
   imports: [
