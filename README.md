@@ -23,9 +23,14 @@
 - sequelize (ORM)
 ### Client
 - Angular 9
+- Obeservable Store
 - Prettier
 ### DB
 - postgresql
+### Test Coverage
+- Client [TBD]
+- Server - `>90%`
+  - [Coverage Report](projects/task-manager-server/coverage.html)
 
 ## Performance checklist
 [Angular Performance checklist](https://github.com/mgechev/angular-performance-checklist)
