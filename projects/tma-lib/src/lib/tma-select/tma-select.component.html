@@ -1,0 +1,5 @@
+<select [ngModel]="selectedValue" (ngModelChange)="updatedSelectedValue($event)" class="form-control" name="currentStatus" id="currentStatus">
+  <option *ngFor="let item of items" [value]="item.value">
+    {{item.name}}
+  </option>
+</select>

@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "task-manager-library": [
-        "dist/task-manager-library/task-manager-library",
-        "dist/task-manager-library"
+      "tma-lib": [
+        "dist/tma-lib/tma-lib",
+        "dist/tma-lib"
       ]
     }
   },

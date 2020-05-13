@@ -168,4 +168,8 @@ export class TaskDetailsComponent implements OnInit {
     // TODO: Need to access service call to update completed status
     this.subTasks[subTaskIndex].isCompleted = event.target.checked;
   }
+
+  selectedValueChange(selectedStatus) {
+    this.task.status = selectedStatus;
+  }
 }

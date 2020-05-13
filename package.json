@@ -12,7 +12,7 @@
     "bootstrap": "lerna bootstrap --hoist",
     "start:client": "npm run start",
     "start:server": "lerna run start:server --stream",
-    "build:library": "ng build task-managaer-library",
+    "build:library": "ng build tma-library",
     "test:server": "lerna run test:server --stream",
     "test:server-cov-html": "lerna run test-cov-html --stream",
     "prettier:client:ts": "prettier --write ./projects/task-manager-client/src/**/*.ts",

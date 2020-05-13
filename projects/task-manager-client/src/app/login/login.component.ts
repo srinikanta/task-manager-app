@@ -18,6 +18,13 @@ export class LoginComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
 
+  items = [
+    {name: 'New', value: 'new'},
+    {name: 'In Progress', value: 'inProgress'},
+    {name: 'Completed', value: 'completed'}
+  ];
+  selectedValue = 'new';
+
   constructor(
     // private authService: AuthService,
     private router: Router,
@@ -47,5 +54,8 @@ export class LoginComponent implements OnInit {
     this.userService.findOrCreateUser(userPayload).subscribe((newUser) => {
       this.router.navigate(['/tasks']);
     });
+  }
+  selectedValueChange(selectedValue) {
+    console.log(selectedValue);
   }
 }

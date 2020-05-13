@@ -27,11 +27,11 @@
       <dl>
         <dt>Status</dt>
         <dd>
-          <select [(ngModel)]="task.status" class="form-control" name="currentStatus" id="currentStatus">
-            <option *ngFor="let statusType of statusTypes" [value]="statusType.value">
-              {{statusType.name}}
-            </option>
-          </select>
+          <tma-select
+            [items]="statusTypes"
+            (selectedValueChange)="selectedValueChange($event)"
+            [selectedValue]="task.status">
+          </tma-select>
         </dd>
       </dl>
       <dl>

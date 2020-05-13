@@ -125,38 +125,38 @@
         }
       }
     },
-    "task-manager-library": {
+    "tma-lib": {
       "projectType": "library",
-      "root": "projects/task-manager-library",
-      "sourceRoot": "projects/task-manager-library/src",
-      "prefix": "lib",
+      "root": "projects/tma-lib",
+      "sourceRoot": "projects/tma-lib/src",
+      "prefix": "tma",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/task-manager-library/tsconfig.lib.json",
-            "project": "projects/task-manager-library/ng-package.json"
+            "tsConfig": "projects/tma-lib/tsconfig.lib.json",
+            "project": "projects/tma-lib/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/task-manager-library/tsconfig.lib.prod.json"
+              "tsConfig": "projects/tma-lib/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/task-manager-library/src/test.ts",
-            "tsConfig": "projects/task-manager-library/tsconfig.spec.json",
-            "karmaConfig": "projects/task-manager-library/karma.conf.js"
+            "main": "projects/tma-lib/src/test.ts",
+            "tsConfig": "projects/tma-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/tma-lib/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/task-manager-library/tsconfig.lib.json",
-              "projects/task-manager-library/tsconfig.spec.json"
+              "projects/tma-lib/tsconfig.lib.json",
+              "projects/tma-lib/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

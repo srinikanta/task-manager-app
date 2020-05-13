@@ -22,6 +22,8 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent, HeaderComponent } from './layout';
 
 import { DatePipe } from '@angular/common';
+import { TmaSelectModule } from 'tma-lib';
+
 import {
   AuthServiceConfig,
   GoogleLoginProvider,
@@ -67,7 +69,8 @@ export function provideConfig() {
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TmaSelectModule
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
     // SocialLoginModule
   ],
