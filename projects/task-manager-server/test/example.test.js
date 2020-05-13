@@ -2,7 +2,7 @@
 
 const Lab = require('@hapi/lab');
 const { expect } = require('@hapi/code');
-const { afterEach, beforeEach, describe, it } = exports.lab = Lab.script();
+const { afterEach, beforeEach, describe, it } = (exports.lab = Lab.script());
 const { init } = require('../lib/server');
 
 describe('GET /', () => {
@@ -41,7 +41,7 @@ describe('GET /', () => {
       updatedOn: '2020-05-10',
       dueDate: '2020-05-10',
       status: 'new'
-    })
+    });
 
     const res = await server.inject({
       method: 'POST',
@@ -96,7 +96,7 @@ describe('GET /', () => {
       commentTxt: 'Test comment for task 10',
       taskId: 10,
       commentDate: '2020-05-10'
-    })
+    });
 
     const res = await server.inject({
       method: 'POST',
@@ -112,7 +112,7 @@ describe('GET /', () => {
       userName: 'srini1',
       email: 'sri@sri.com',
       creationDate: '2020-05-10'
-    })
+    });
 
     const res = await server.inject({
       method: 'POST',
@@ -127,7 +127,7 @@ describe('GET /', () => {
       userName: null,
       email: null,
       creationDate: null
-    })
+    });
 
     const res = await server.inject({
       method: 'POST',
@@ -142,7 +142,7 @@ describe('GET /', () => {
       userName: null,
       email: null,
       creationDate: null
-    })
+    });
 
     const res = await server.inject({
       method: 'POST',
@@ -152,5 +152,4 @@ describe('GET /', () => {
 
     expect(res.result).to.equal(false);
   });
-
 });

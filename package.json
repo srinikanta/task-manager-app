@@ -15,8 +15,7 @@
     "build:library": "ng build tma-library",
     "test:server": "lerna run test:server --stream",
     "test:server-cov-html": "lerna run test-cov-html --stream",
-    "prettier:client:ts": "prettier --write ./projects/task-manager-client/src/**/*.ts",
-    "prettier:server:js": "lerna run prettier:server:js --stream"
+    "format:write": "prettier projects/**/*.{ts,js,json,md,scss} --write"
   },
   "private": true,
   "dependencies": {

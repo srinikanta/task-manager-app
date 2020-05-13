@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   loggedIn: boolean;
 
   items = [
-    {name: 'New', value: 'new'},
-    {name: 'In Progress', value: 'inProgress'},
-    {name: 'Completed', value: 'completed'}
+    { name: 'New', value: 'new' },
+    { name: 'In Progress', value: 'inProgress' },
+    { name: 'Completed', value: 'completed' }
   ];
   selectedValue = 'new';
 

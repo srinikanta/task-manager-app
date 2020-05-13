@@ -13,15 +13,13 @@ export interface ISelecteItem {
 export class TmaSelectComponent implements OnInit {
   @Input() items: ISelecteItem[];
   @Input() selectedValue: string;
-  @Output() selectedValueChange = new EventEmitter<string>()
-  constructor() { }
+  @Output() selectedValueChange = new EventEmitter<string>();
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   updatedSelectedValue(selectedValue) {
     this.selectedValue = selectedValue;
     this.selectedValueChange.emit(this.selectedValue);
   }
-
 }
