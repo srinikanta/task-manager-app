@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
@@ -15,7 +16,8 @@
     "build:library": "ng build tma-library",
     "test:server": "lerna run test:server --stream",
     "test:server-cov-html": "lerna run test-cov-html --stream",
-    "format:write": "prettier projects/**/*.{ts,js,json,md,scss} --write"
+    "format:write": "prettier projects/**/*.{ts,js,json,md,scss} --write",
+    "analyze": "npm run build:prod -- --stats-json && webpack-bundle-analyzer ./dist/task-manager-client/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
@@ -64,6 +66,7 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "webpack-bundle-analyzer": "^3.7.0"
   }
 }

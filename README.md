@@ -32,6 +32,9 @@
 - Server - `>90%`
   - [Coverage Report](projects/task-manager-server/coverage.html)
 
+## Bundle Analyzer
+[App Bundle Analyzer Report](output/Analyzer.png)
+
 ## Performance checklist
 [Angular Performance checklist](https://github.com/mgechev/angular-performance-checklist)
 
