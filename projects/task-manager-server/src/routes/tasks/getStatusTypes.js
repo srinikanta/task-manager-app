@@ -1,11 +1,11 @@
-const TaskService = require('../../services/task-service');
+const StatusService = require('../../services/status-service');
 
 module.exports = {
   method: 'GET',
-  path: '/statusTypes',
+  path: '/status-types',
   handler: async function (request, h) {
-    const taskService = new TaskService();
-    const statusTypes = await taskService.getStatusTypes();
+    const statusService = new StatusService();
+    const statusTypes = await statusService.getStatusTypes();
     return h.response(statusTypes);
   },
   options: {

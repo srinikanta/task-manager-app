@@ -1,21 +1,22 @@
-const TaskService = require('../../services/task-service');
+const SubTaskService = require('../../services/subtask-service');
 
 module.exports = {
   method: 'POST',
-  path: '/addSubTask',
+  path: '/sub-tasks',
   handler: async function (request, h) {
     const payload = request.payload;
-    const taskService = new TaskService();
+    const subTaskService = new SubTaskService();
+    const subTask = payload[0];
     let subTaskPayload = {
-      title: payload.title,
-      description: payload.description,
-      dueDate: payload.dueDate,
-      taskId: payload.taskId,
-      creationDate: payload.creationDate
+      title: subTask.title,
+      description: subTask.description,
+      dueDate: subTask.dueDate,
+      taskId: subTask.taskId,
+      creationDate: subTask.creationDate
     };
-    const subTasks = await taskService.addSubTask(subTaskPayload);
-    console.log(subTasks);
-    return h.response({ subTasks });
+    const subTasksRes = await subTaskService.addSubTask(subTaskPayload);
+    console.log(subTasksRes);
+    return h.response({ subTasksRes });
   },
   options: {
     auth: false,

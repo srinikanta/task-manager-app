@@ -2,7 +2,7 @@ const TaskService = require('../../services/task-service');
 
 module.exports = {
   method: 'GET',
-  path: '/tasksByUserId/{userId}',
+  path: '/tasks/{userId}',
   handler: async function (request, h) {
     const taskService = new TaskService();
     const userId = request.params.userId;

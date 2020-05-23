@@ -2,18 +2,19 @@ const CommentService = require('../../services/comment-service');
 
 module.exports = {
   method: 'POST',
-  path: '/addComment',
+  path: '/comments',
   handler: async function (request, h) {
     const payload = request.payload;
     const commentService = new CommentService();
+    const comment = payload[0];
     let commentPayload = {
-      commentTxt: payload.commentTxt,
-      taskId: payload.taskId,
-      commentDate: payload.commentDate
+      commentTxt: comment.commentTxt,
+      taskId: comment.taskId,
+      commentDate: comment.commentDate
     };
-    const comment = await commentService.addComment(commentPayload);
-    console.log(comment);
-    return h.response({});
+    const commentRes = await commentService.addComment(commentPayload);
+    console.log(commentRes);
+    return h.response(commentRes);
   },
   options: {
     auth: false,

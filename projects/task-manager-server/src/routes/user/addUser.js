@@ -2,13 +2,14 @@ const UserService = require('../../services/user-service');
 
 module.exports = {
   method: 'POST',
-  path: '/addUser',
+  path: '/users',
   handler: async function (request, h) {
     const userService = new UserService();
     const payload = request.payload;
+    const user = payload[0];
     console.log(payload);
-    const user = await userService.addUser(payload);
-    return h.response(user);
+    const userRes = await userService.addUser(user);
+    return h.response(userRes);
   },
   options: {
     auth: false,

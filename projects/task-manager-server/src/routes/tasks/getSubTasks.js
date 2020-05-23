@@ -1,13 +1,13 @@
-const TaskService = require('../../services/task-service');
+const SubTaskService = require('../../services/subtask-service');
 
 module.exports = {
   method: 'GET',
-  path: '/subTasks/{id}',
+  path: '/sub-tasks/{taskId}',
   handler: async function (request, h) {
-    const taskService = new TaskService();
-    const taskId = request.params.id;
+    const subTaskService = new SubTaskService();
+    const taskId = request.params.taskId;
     console.log(taskId);
-    const subTasks = await taskService.getSubTasks(taskId);
+    const subTasks = await subTaskService.getSubTasks(taskId);
     return h.response(subTasks);
   },
   options: {

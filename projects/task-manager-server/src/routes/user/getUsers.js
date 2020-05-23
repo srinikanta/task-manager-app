@@ -2,7 +2,7 @@ const Userervice = require('../../services/user-service');
 
 module.exports = {
   method: 'GET',
-  path: '/getUsers',
+  path: '/users',
   handler: async function (request, h) {
     const userService = new Userervice();
     const users = await userService.getUsers();

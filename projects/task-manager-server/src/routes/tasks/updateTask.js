@@ -2,10 +2,10 @@ const TaskService = require('../../services/task-service');
 
 module.exports = {
   method: 'PUT',
-  path: '/updateTask/{id}',
+  path: '/tasks/{taskId}',
   handler: async function (request, h) {
-    console.log('request.params.id', request.params.id);
-    const taskId = request.params.id;
+    console.log('request.params.id', request.params.taskId);
+    const taskId = request.params.taskId;
     const payload = request.payload;
     console.log('removedTask::', taskId, payload);
 

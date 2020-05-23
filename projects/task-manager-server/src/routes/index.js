@@ -11,6 +11,7 @@ const updateTask = require('./tasks/updateTask');
 const getUsers = require('./user/getUsers');
 const getUser = require('./user/getUser');
 const addUser = require('./user/addUser');
+const rootPath = require('./rootPath');
 
 module.exports = [
   getStatusTypes,
@@ -25,5 +26,6 @@ module.exports = [
   updateTask,
   getUsers,
   getUser,
-  addUser
+  addUser,
+  rootPath
 ];

@@ -1,5 +1,3 @@
 `use strict`;
 
-const { start } = require('../lib/server');
-
-start();
+const { server } = require('../lib/server');
