@@ -13,18 +13,16 @@ const server = Hapi.server({
 
 server.route(Routes);
 
-exports.init = async () => {
-  await server.initialize();
-  return server;
-};
-
-exports.start = async () => {
+const init = async () => {
   await server.start();
   console.log(`Server running at: ${server.info.uri}`);
-  return server;
 };
 
 process.on('unhandledRejection', (err) => {
   console.log(err);
   process.exit(1);
 });
+
+init();
+
+module.exports = server;

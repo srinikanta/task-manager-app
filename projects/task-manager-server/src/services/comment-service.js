@@ -29,7 +29,7 @@ class CommentsService {
         taskId: comment.taskId,
         commentDate: comment.commentDate
       });
-      return true;
+      return created;
     } catch (err) {
       console.log(err);
       return false;

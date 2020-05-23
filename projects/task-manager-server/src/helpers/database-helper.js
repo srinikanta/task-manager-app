@@ -9,7 +9,7 @@ class Database {
     const dbConfig = config.get('db');
     this._sequelize = new Sequelize(
       dbConfig.database,
-      dbConfig.user,
+      dbConfig.username,
       dbConfig.password,
       {
         host: dbConfig.host,

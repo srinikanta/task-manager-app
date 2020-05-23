@@ -15,7 +15,6 @@
     "start:server": "lerna run start:server --stream",
     "build:library": "ng build tma-library",
     "test:server": "lerna run test:server --stream",
-    "test:server-cov-html": "lerna run test-cov-html --stream",
     "format:write": "prettier projects/**/*.{ts,js,json,md,scss} --write",
     "analyze": "npm run build:prod -- --stats-json && webpack-bundle-analyzer ./dist/task-manager-client/stats-es2015.json"
   },

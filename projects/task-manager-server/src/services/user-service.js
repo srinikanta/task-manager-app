@@ -3,16 +3,21 @@ const UserModel = require('../models/user.model');
 
 class UserService {
   async getUser(userName) {
-    const queryResponse = await UserModel.findAll({
-      where: {
-        userName
+    try {
+      const queryResponse = await UserModel.findAll({
+        where: {
+          userName
+        }
+      });
+      const result = [];
+      for (let index = 0; index < queryResponse.length; index++) {
+        result.push(queryResponse[index].dataValues);
       }
-    });
-    const result = [];
-    for (let index = 0; index < queryResponse.length; index++) {
-      result.push(queryResponse[index].dataValues);
+      return result;
+    } catch (err) {
+      console.log(err);
+      return false;
     }
-    return result;
   }
 
   async getUsers() {
