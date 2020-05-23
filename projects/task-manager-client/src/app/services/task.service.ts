@@ -31,15 +31,13 @@ export class TaskService extends ObservableStore<IStoreState> {
   }
 
   private fetchTasks(userId) {
-    return this.http
-      .get<any[]>(`http://localhost:3000/tasksByUserId/${userId}`)
-      .pipe(
-        map((tasks) => {
-          this.setState({ tasks }, TasksStoreActions.GetTasks);
-          return tasks;
-        }),
-        catchError(this.handleError)
-      );
+    return this.http.get<any[]>(`http://localhost:3000/tasks/${userId}`).pipe(
+      map((tasks) => {
+        this.setState({ tasks }, TasksStoreActions.GetTasks);
+        return tasks;
+      }),
+      catchError(this.handleError)
+    );
   }
 
   private fetchAllTasks() {
@@ -54,7 +52,7 @@ export class TaskService extends ObservableStore<IStoreState> {
 
   private fetchSubTasks(taskId) {
     return this.http
-      .get<any[]>(`http://localhost:3000/subTasks/${taskId}`)
+      .get<any[]>(`http://localhost:3000/sub-tasks/${taskId}`)
       .pipe(
         map((subTasks) => {
           this.setState({ subTasks }, TasksStoreActions.GetSubTasks);
@@ -77,7 +75,7 @@ export class TaskService extends ObservableStore<IStoreState> {
   }
 
   private fetchStatusTypes() {
-    return this.http.get<any[]>('http://localhost:3000/statusTypes').pipe(
+    return this.http.get<any[]>('http://localhost:3000/status-types').pipe(
       map((statusTypes) => {
         this.setState({ statusTypes }, TasksStoreActions.GetStatusTypes);
         return statusTypes;
@@ -146,7 +144,7 @@ export class TaskService extends ObservableStore<IStoreState> {
 
   addTask(task: ITask, userId: number | string) {
     return this.http
-      .post<ITask>('http://localhost:3000/addTask', task, httpHeaders)
+      .post<ITask>('http://localhost:3000/tasks', [task], httpHeaders)
       .pipe(
         switchMap(() => {
           return this.fetchTasks(userId);
@@ -157,7 +155,7 @@ export class TaskService extends ObservableStore<IStoreState> {
 
   addSubTask(subTask: ISubTask, taskId: number) {
     return this.http
-      .post<ISubTask>('http://localhost:3000/addSubTask', subTask, httpHeaders)
+      .post<ISubTask>('http://localhost:3000/sub-tasks', [subTask], httpHeaders)
       .pipe(
         switchMap(() => {
           return this.fetchSubTasks(taskId);
@@ -168,7 +166,7 @@ export class TaskService extends ObservableStore<IStoreState> {
 
   addComment(comment: IComment, taskId: number) {
     return this.http
-      .post<IComment>('http://localhost:3000/addComment', comment, httpHeaders)
+      .post<IComment>('http://localhost:3000/comments', [comment], httpHeaders)
       .pipe(
         switchMap(() => {
           return this.fetchComments(taskId);
@@ -178,7 +176,7 @@ export class TaskService extends ObservableStore<IStoreState> {
   }
 
   removeTask(taskId: number, userId) {
-    return this.http.delete(`http://localhost:3000/deleteTask/${taskId}`).pipe(
+    return this.http.delete(`http://localhost:3000/tasks/${taskId}`).pipe(
       switchMap(() => {
         const tasks = this.deleteLocalTask(taskId);
         this.setState({ tasks }, TasksStoreActions.RemoveTask);
@@ -190,7 +188,7 @@ export class TaskService extends ObservableStore<IStoreState> {
 
   updateTask(updatdTask: ITask, taskId: number, userId) {
     return this.http
-      .put(`http://localhost:3000/updateTask/${taskId}`, updatdTask)
+      .put(`http://localhost:3000/tasks/${taskId}`, [updatdTask])
       .pipe(
         switchMap((task: ITask) => {
           this.setState({ task }, TasksStoreActions.UpdateTask);

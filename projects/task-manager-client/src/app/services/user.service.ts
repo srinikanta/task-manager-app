@@ -27,7 +27,7 @@ export class UserService extends ObservableStore<IStoreState> {
 
   private fetchUser(userName) {
     return this.http
-      .get<IUserInfo>(`http://localhost:3000/getUser/${userName}`)
+      .get<IUserInfo>(`http://localhost:3000/users/${userName}`)
       .pipe(
         map((userInfo) => {
           this.setState({ userInfo }, UserStoreActions.GETUSER);
@@ -40,8 +40,8 @@ export class UserService extends ObservableStore<IStoreState> {
   addUser(userPayload: IUserInfo) {
     return this.http
       .post<IUserInfo>(
-        'http://localhost:3000/addUser',
-        userPayload,
+        'http://localhost:3000/users',
+        [userPayload],
         httpHeaders
       )
       .pipe(
@@ -59,7 +59,7 @@ export class UserService extends ObservableStore<IStoreState> {
 
   findOrCreateUser(user: IUserInfo) {
     return this.http
-      .post<IUserInfo>('http://localhost:3000/addUser', user, httpHeaders)
+      .post<IUserInfo>('http://localhost:3000/users', [user], httpHeaders)
       .pipe(
         map((response) => {
           console.log(response);
@@ -72,7 +72,7 @@ export class UserService extends ObservableStore<IStoreState> {
   }
 
   private fetchUsers() {
-    return this.http.get<IUserInfo>(`http://localhost:3000/getUsers`).pipe(
+    return this.http.get<IUserInfo>(`http://localhost:3000/users`).pipe(
       map((users) => {
         return users;
       }),
