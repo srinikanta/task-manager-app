@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
       const taskPayload = {
         ...result.data.task,
         creationDate: Utils.getCurrentDate(),
-        dueDate: this.getDueDate(result.data.task.dueDate),
+        dueDate: Utils.getDueDate(result.data.task.dueDate, this.DELIMITER),
         status: 'new',
         subTaks: [],
         comments: []
@@ -82,11 +82,5 @@ export class HeaderComponent implements OnInit {
       classname: 'bg-success text-light',
       delay: 10000
     });
-  }
-
-  getDueDate(date) {
-    return date
-      ? date.year + this.DELIMITER + date.month + this.DELIMITER + date.day
-      : '';
   }
 }

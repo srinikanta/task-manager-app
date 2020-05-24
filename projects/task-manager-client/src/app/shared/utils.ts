@@ -8,4 +8,10 @@ export class Utils {
     const todayString = yyyy + '-' + mm + '-' + dd;
     return todayString;
   }
+
+  public static getDueDate(date, DELIMITER: string) {
+    return date
+      ? date.year + DELIMITER + date.month + DELIMITER + date.day
+      : '';
+  }
 }
