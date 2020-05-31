@@ -25,29 +25,13 @@ export class UserService extends ObservableStore<IStoreState> {
     super({ trackStateHistory: true });
   }
 
-  private fetchUser(userName) {
+  public fetchUser(userName) {
     return this.http
       .get<IUserInfo>(`http://localhost:3000/users/${userName}`)
       .pipe(
         map((userInfo) => {
           this.setState({ userInfo }, UserStoreActions.GETUSER);
           return userInfo;
-        }),
-        catchError(this.handleError)
-      );
-  }
-
-  addUser(userPayload: IUserInfo) {
-    return this.http
-      .post<IUserInfo>(
-        'http://localhost:3000/users',
-        [userPayload],
-        httpHeaders
-      )
-      .pipe(
-        switchMap((user) => {
-          console.log(user);
-          return this.fetchUser(user.userName);
         }),
         catchError(this.handleError)
       );
@@ -62,22 +46,12 @@ export class UserService extends ObservableStore<IStoreState> {
       .post<IUserInfo>('http://localhost:3000/users', [user], httpHeaders)
       .pipe(
         map((response) => {
-          console.log(response);
           const userInfo = response[0];
           this.setState({ userInfo }, UserStoreActions.GETUSER);
           return response[0];
         }),
         catchError(this.handleError)
       );
-  }
-
-  private fetchUsers() {
-    return this.http.get<IUserInfo>(`http://localhost:3000/users`).pipe(
-      map((users) => {
-        return users;
-      }),
-      catchError(this.handleError)
-    );
   }
 
   private handleError(error: any) {

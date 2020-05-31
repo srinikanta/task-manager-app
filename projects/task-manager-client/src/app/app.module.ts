@@ -15,8 +15,6 @@ import { CommonModule } from '@angular/common';
 
 import { CommentboxComponent } from './comments/commentbox/commentbox.component';
 import { CommentsComponent } from './comments/comments/comments.component';
-import { ChildboxComponent } from './comments/childbox/childbox.component';
-import { DatacontainerDirective } from './comments/comments/comments.component';
 
 import { LoginComponent } from './login/login.component';
 import { FooterComponent, HeaderComponent } from './layout';
@@ -55,8 +53,6 @@ export function provideConfig() {
     TaskDetailsComponent,
     CommentboxComponent,
     CommentsComponent,
-    ChildboxComponent,
-    DatacontainerDirective,
     LoginComponent,
     FooterComponent,
     HeaderComponent,
@@ -74,7 +70,6 @@ export function provideConfig() {
     // UN COMMENT BELOW CODE TO USE GOOGLE AUTHENTICATION
     // SocialLoginModule
   ],
-  entryComponents: [ChildboxComponent],
   providers: [
     TaskService,
     DatePipe,

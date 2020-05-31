@@ -85,7 +85,7 @@ export class TaskService extends ObservableStore<IStoreState> {
   }
 
   getAllTasks() {
-    const tasks = this.getState().tasks;
+    const tasks = this.getState() ? this.getState().tasks : null;
     if (tasks && tasks.length) {
       return of(tasks);
     } else {
@@ -94,7 +94,7 @@ export class TaskService extends ObservableStore<IStoreState> {
   }
 
   getTasksByUser(userId) {
-    const tasks = this.getState().tasks;
+    const tasks = this.getState() ? this.getState().tasks : null;
     if (tasks && tasks.length) {
       return of(tasks);
     } else {
@@ -103,7 +103,7 @@ export class TaskService extends ObservableStore<IStoreState> {
   }
 
   getSubTasks(taskId) {
-    const subTasks = this.getState().subTasks;
+    const subTasks = this.getState() ? this.getState().subTasks : null;
     if (subTasks && subTasks.length) {
       return of(subTasks);
     } else {
@@ -112,7 +112,7 @@ export class TaskService extends ObservableStore<IStoreState> {
   }
 
   getComments(taskId) {
-    const comments = this.getState().comments;
+    const comments = this.getState() ? this.getState().comments : null;
     if (comments && comments.length) {
       return of(comments);
     } else {
@@ -121,7 +121,7 @@ export class TaskService extends ObservableStore<IStoreState> {
   }
 
   getStatusTypes() {
-    const statusTypes = this.getState().statusTypes;
+    const statusTypes = this.getState() ? this.getState().statusTypes : null;
     if (statusTypes && statusTypes.length) {
       return of(statusTypes);
     } else {
@@ -207,6 +207,17 @@ export class TaskService extends ObservableStore<IStoreState> {
       return true;
     });
     return tasks;
+  }
+
+  public setStateEmpty() {
+    this.setState({
+      tasks: [],
+      task: null,
+      statusTypes: [],
+      subTasks: [],
+      comments: [],
+      userInfo: null
+    });
   }
 
   private handleError(error: any) {
