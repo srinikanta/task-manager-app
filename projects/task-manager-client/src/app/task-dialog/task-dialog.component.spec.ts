@@ -1,6 +1,6 @@
 import { TestBed, async, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoginComponent } from './login.component';
+import { TaskDialogComponent } from './task-dialog.component';
 import { UserService } from '../services/user.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ describe('LoginComonent', () => {
     let userService: UserService;
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [LoginComponent],
+      declarations: [TaskDialogComponent],
       providers: [
         { provide: Router, useValue: { navigate: () => {} } },
         {
@@ -24,33 +24,27 @@ describe('LoginComonent', () => {
   }));
 
   it('should create the login component', () => {
-    const fixture = TestBed.createComponent(LoginComponent);
+    const fixture = TestBed.createComponent(TaskDialogComponent);
     const loginComponent = fixture.componentInstance;
     expect(loginComponent).toBeTruthy();
   });
 
   it(`should render component with 'Not signed in' text`, () => {
-    const fixture = TestBed.createComponent(LoginComponent);
+    const fixture = TestBed.createComponent(TaskDialogComponent);
+    const loginComponent = fixture.componentInstance;
+    loginComponent.isVisible = true;
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.card-title').textContent).toEqual(
-      'Not signed in'
-    );
+    expect(loginComponent.isVisible).toEqual(true);
   });
-  it('should click login button', fakeAsync(() => {
-    const fixture = TestBed.createComponent(LoginComponent);
-    fixture.detectChanges();
-    const loginComponent = fixture.componentInstance;
-    spyOn(loginComponent, 'signInWithGoogle').and.callThrough();
 
-    let button = fixture.debugElement.nativeElement.querySelector(
-      '.loginBtn--google'
-    );
-    console.log('button:::', button);
-    button.click();
-    tick();
-    fixture.whenStable().then(() => {
-      expect(loginComponent.signInWithGoogle).toHaveBeenCalled();
-    });
-  }));
+  it(`should render component with 'Not signed in' text`, () => {
+    const fixture = TestBed.createComponent(TaskDialogComponent);
+    const loginComponent: TaskDialogComponent = fixture.componentInstance;
+    loginComponent.isVisible = true;
+    loginComponent.operation = 'subTask';
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(loginComponent.isVisible).toEqual(true);
+  });
 });

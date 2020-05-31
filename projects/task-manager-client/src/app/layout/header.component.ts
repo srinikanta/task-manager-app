@@ -66,7 +66,6 @@ export class HeaderComponent implements OnInit {
         subTaks: [],
         comments: []
       };
-      console.log(taskPayload, this.userInfo);
       Object.assign(taskPayload, this.userInfo);
       this.taskService
         .addTask(taskPayload, this.userInfo.userId)

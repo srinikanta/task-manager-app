@@ -1,17 +1,19 @@
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from './header.component';
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 import { UserService } from '../services/user.service';
 import { TaskService } from '../services/task.service';
 import { of } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { By } from 'protractor';
 
 describe('HeaderComponent', () => {
   beforeEach(async(() => {
     let userService: UserService;
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [HeaderComponent],
+      declarations: [HeaderComponent, TaskDialogComponent],
       providers: [
         { provide: Router, useValue: { navigate: () => {} } },
         {
@@ -89,4 +91,14 @@ describe('HeaderComponent', () => {
       expect(headerComponent.hadnleSignOut).toHaveBeenCalled();
     });
   }));
+  /*
+  it('should call hadnleSignOut', (() => {
+    const fixture = TestBed.createComponent(HeaderComponent);
+    const de = fixture.debugElement;
+    fixture.detectChanges();
+    de.query(By.directive(TaskDialogComponent))
+    //console.log(childEl);
+    expect(true).toBeTruthy();
+  }));
+  */
 });

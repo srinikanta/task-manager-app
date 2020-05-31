@@ -72,12 +72,6 @@ export class TaskDetailsComponent implements OnInit {
     };
   }
 
-  getDateFormat(date) {
-    return date
-      ? date.year + this.DELIMITER + date.month + this.DELIMITER + date.day
-      : '';
-  }
-
   handleUpdateTask() {
     const userInfo = this.userService.getUserInfo();
     const updateTaskPayload = {
@@ -86,7 +80,7 @@ export class TaskDetailsComponent implements OnInit {
       title: this.task.title,
       description: this.task.description,
       status: this.task.status,
-      dueDate: this.getDateFormat(this.task.dueDate)
+      dueDate: Utils.getDueDate(this.task.dueDate, this.DELIMITER)
     };
 
     this.taskService
@@ -129,7 +123,7 @@ export class TaskDetailsComponent implements OnInit {
         taskId: this.task.taskId,
         creationDate: Utils.getCurrentDate(),
         ...result.data.task,
-        dueDate: this.getDateFormat(result.data.task.dueDate),
+        dueDate: Utils.getDueDate(result.data.task.dueDate, this.DELIMITER),
         isCompleted: false
       };
 

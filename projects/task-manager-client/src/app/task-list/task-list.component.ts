@@ -18,7 +18,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   public tasks: ITask[];
   storeSub: Subscription;
   public operation = 'new';
-  private userInfo: IUserInfo;
+  public userInfo: IUserInfo;
 
   constructor(
     private taskService: TaskService,
@@ -53,12 +53,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.isVisible = isOpen;
     this.operation = 'new';
     this.task = {} as ITask;
-  }
-
-  editTask(task: ITask) {
-    console.log(task);
-    this.isVisible = true;
-    this.operation = 'edit';
   }
 
   deleteTask(taskId: number) {

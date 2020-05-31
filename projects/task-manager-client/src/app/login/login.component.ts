@@ -55,7 +55,4 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/tasks']);
     });
   }
-  selectedValueChange(selectedValue) {
-    console.log(selectedValue);
-  }
 }

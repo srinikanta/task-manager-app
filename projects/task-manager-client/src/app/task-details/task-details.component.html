@@ -1,14 +1,16 @@
 <layout-header (openTaskDialog)="openTaskDialog($event)"></layout-header>
 <div style="margin: 20px 10px;">
-  <div style="margin: 20px 0">
+  <div style="margin: 20px 0;">
     <div class="d-flex align-content-center justify-content-between">
       <div class="p-2 bd-highlight" style="font-weight: bold;">
         <a routerLink="/tasks">Back</a>
       </div>
       <div class="p-2 bd-highlight">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary save-task">
           <i class="fas fa-save"></i>
-          <span style="padding-left: 5px;" (click)="handleUpdateTask()">Save Task</span>
+          <span style="padding-left: 5px;" (click)="handleUpdateTask()"
+            >Save Task</span
+          >
         </button>
       </div>
     </div>
@@ -16,12 +18,18 @@
 </div>
 <div *ngIf="task">
   <div class="card">
-    <h5 class="card-header">{{task.title}}</h5>
+    <h5 class="card-header">{{ task.title }}</h5>
     <div class="card-body">
       <dl>
         <dt>Description</dt>
         <dd>
-          <textarea class="form-control" [(ngModel)]="task.description" name="desc" id="inputDesc" rows="3"></textarea>
+          <textarea
+            class="form-control"
+            [(ngModel)]="task.description"
+            name="desc"
+            id="inputDesc"
+            rows="3"
+          ></textarea>
         </dd>
       </dl>
       <dl>
@@ -30,7 +38,8 @@
           <tma-select
             [items]="statusTypes"
             (selectedValueChange)="selectedValueChange($event)"
-            [selectedValue]="task.status">
+            [selectedValue]="task.status"
+          >
           </tma-select>
         </dd>
       </dl>
@@ -40,33 +49,64 @@
         </dt>
         <dd>
           <div class="input-group">
-            <input class="form-control" placeholder="yyyy-mm-dd" disabled=true name="dp" [(ngModel)]="task.creationDate"
-              [startDate]="task.creationDate" ngbDatepicker #dp1="ngbDatepicker">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              disabled="true"
+              name="dp"
+              [(ngModel)]="task.creationDate"
+              [startDate]="task.creationDate"
+              ngbDatepicker
+              #dp1="ngbDatepicker"
+            />
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="dp1.toggle()" type="button"></button>
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="dp1.toggle()"
+                type="button"
+              ></button>
             </div>
           </div>
         </dd>
       </dl>
       <dl>
-        <dt>Due Date
-        </dt>
+        <dt>Due Date</dt>
         <dd>
           <div class="input-group">
-            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="task.dueDate"
-              [startDate]="task.dueDate" ngbDatepicker #dp2="ngbDatepicker">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              [(ngModel)]="task.dueDate"
+              [startDate]="task.dueDate"
+              ngbDatepicker
+              #dp2="ngbDatepicker"
+            />
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="dp2.toggle()" type="button"></button>
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="dp2.toggle()"
+                type="button"
+              ></button>
             </div>
           </div>
         </dd>
       </dl>
     </div>
   </div>
-  <div class="d-flex align-content-center justify-content-between" style="margin: 10px 0;">
+  <div
+    class="d-flex align-content-center justify-content-between"
+    style="margin: 10px 0;"
+  >
     <div class="p-2 bd-highlight" style="font-weight: bold;">Subtask(s)</div>
     <div class="p-2 bd-highlight">
-      <button type="button" (click)="handleSubtask()" class="btn btn-link">Create Subtask</button>
+      <button
+        type="button"
+        (click)="handleSubtask()"
+        class="btn btn-link sub-task-btn"
+      >
+        Create Subtask
+      </button>
     </div>
   </div>
   <table class="table table-hover table-sm">
@@ -74,10 +114,16 @@
       <tr *ngFor="let subTask of subTasks; let subTaskIndex = index">
         <td>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" (click)="handleSubtaskStatus($event, subTaskIndex)">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="defaultCheck1"
+              (click)="handleSubtaskStatus($event, subTaskIndex)"
+            />
           </div>
-        </td>        
-        <td>          
+        </td>
+        <td>
           <del *ngIf="subTask.isCompleted">{{ subTask.title }}</del>
           <div *ngIf="!subTask.isCompleted">{{ subTask.title }}</div>
         </td>
@@ -88,17 +134,27 @@
       </tr>
     </tbody>
   </table>
-  <div class="d-flex align-content-center justify-content-between" style="margin: 10px 0;">
-    <div class="p-2 bd-highlight" style="font-weight: bold;">Comments ({{comments ? comments.length : 0}})</div>
+  <div
+    class="d-flex align-content-center justify-content-between"
+    style="margin: 10px 0;"
+  >
+    <div class="p-2 bd-highlight" style="font-weight: bold;">
+      Comments ({{ comments ? comments.length : 0 }})
+    </div>
   </div>
   <div class="container1">
     <div class="card comments-box-container">
-      <app-comments [postComment]="comments || []" (countComments)="deleteComment($event)"></app-comments>
+      <app-comments
+        [postComment]="comments || []"
+        (countComments)="deleteComment($event)"
+      ></app-comments>
       <div class="commentbox">
         <div class="col-12 col-sm-12 body">
           <div class="comment-container">
             <div class="comment-form">
-              <app-commentbox (usercomment)="receiveComment($event)"></app-commentbox>
+              <app-commentbox
+                (usercomment)="receiveComment($event)"
+              ></app-commentbox>
             </div>
           </div>
         </div>
@@ -106,8 +162,12 @@
     </div>
   </div>
 </div>
-<task-dialog [isVisible]="isVisible" (handleClose)="closeTaskDialog($event)" [data]="dialogData"
-  [operation]="operation">
+<task-dialog
+  [isVisible]="isVisible"
+  (handleClose)="closeTaskDialog($event)"
+  [data]="dialogData"
+  [operation]="operation"
+>
 </task-dialog>
 <layout-footer></layout-footer>
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

@@ -6,7 +6,8 @@ import {
   EventEmitter,
   ElementRef,
   AfterViewInit,
-  AfterContentInit
+  AfterContentInit,
+  OnInit
 } from '@angular/core';
 import {
   NgbModal,
@@ -34,7 +35,7 @@ export interface IDialogDataConfig {
   templateUrl: './task-dialog.component.html',
   styleUrls: ['./task-dialog.component.scss']
 })
-export class TaskDialogComponent implements AfterContentInit {
+export class TaskDialogComponent implements OnInit {
   @ViewChild('modalContent') modalContent: any;
   @ViewChild('assigneeElement') assigneeElement: ElementRef;
   @ViewChild('statusElement') statusElement: ElementRef;
@@ -45,7 +46,7 @@ export class TaskDialogComponent implements AfterContentInit {
   private _isVisible = false;
   private closeDialogResponse: ICloseDialogConfig;
   public model: NgbDateStruct;
-  public sss: any;
+  public title: any;
 
   constructor(
     private modalService: NgbModal,
@@ -73,15 +74,12 @@ export class TaskDialogComponent implements AfterContentInit {
       case 'subTask':
         title = 'Sub Task';
         break;
-      case 'edit':
-        title = 'Edit Task';
-        break;
     }
-    return title;
+    this.title = title;
   }
 
-  ngAfterContentInit() {
-    console.log(this.assigneeElement, this.statusElement);
+  ngOnInit() {
+    this.getDialogTitle();
   }
 
   openTaskModal() {
